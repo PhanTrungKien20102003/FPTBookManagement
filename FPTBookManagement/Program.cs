@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using FPTBookManagement.Models;
+using FPTBookManagement.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<FPTBookDBContext>(opts => {
+    opts.UseSqlServer(
+        builder.Configuration["ConnectionStrings: FPTBookConnection"]);
+});
+builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 
 var app = builder.Build();
 

@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using FPTBookManagement.Models;
 using FPTBookManagement.Repository;
-using SportsStore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FPTBookDBContext>(opts => {
     opts.UseSqlServer(
-        builder.Configuration["ConnectionStrings: FPTBookConnection"]);
+        builder.Configuration["ConnectionStrings:FPTBookConnection"]);
 });
 builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();

@@ -1,7 +1,7 @@
 ﻿using FPTBookManagement.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace SportsStore.Models
+namespace FPTBookManagement.Models
 {
 	public class SeedData
 	{

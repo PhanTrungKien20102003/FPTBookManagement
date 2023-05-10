@@ -28,9 +28,19 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.MapControllerRoute("pagination",
-    "Products/Page{productPage}",
-    new { Controller = "Home", action = "Index" });
+
+app.MapControllerRoute("catpage",
+    "{category}/Page{productPage:int}",
+    new { Controller = "Home", Action = "Index" });
+
+app.MapControllerRoute("page", "Page{productPage:int}",
+    new { Controller = "Home", Action = "Index", productPage = 1 });
+
+app.MapControllerRoute("category", "{category}",
+    new { Controller = "Home", Action = "Index", productPage = 1 });
+
+app.MapControllerRoute("pagination", "Products/Page{productPage}",
+    new { Controller = "Home", action = "Index", productPage = 1 });
 
 app.UseRouting();
 
@@ -39,6 +49,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 SeedData.EnsurePopulated(app);
 

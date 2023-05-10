@@ -24,6 +24,7 @@ namespace FPTBookManagement.Infrastructure
         public PagingInfo? PageModel { get; set; }
         public string? PageAction { get; set; }
 
+
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
         public Dictionary<string, object> PageUrlValue { get; set; } = new Dictionary<string, object>();
 

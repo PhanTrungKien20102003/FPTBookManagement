@@ -14,23 +14,31 @@ namespace FPTBookManagement.Controllers
         {
             this.BookRepository = bookRepository;
         }
-        public ViewResult Index(int productPage = 1)
+        public ViewResult Index(string? category,int productPage = 1)
             => View(new ProductsListViewModel
             {
-                Books = BookRepository.Books.OrderBy(b => b.Id)
-                .Skip((productPage - 1) * PageSize)
-                .Take(PageSize),
+                Books = BookRepository.Books
+                    .Where(p=> category == null || p.Category == category)
+                    .OrderBy(b => b.Id)
+                    .Skip((productPage - 1) * PageSize)
+                    .Take(PageSize),
                 
                 PagingInfo = new PagingInfo {
                     CurrentPage= productPage,
                     ItemsPerPage=PageSize,
-                    TotalItems= BookRepository.Books.Count()
-                }
+                    TotalItems = category == null ? BookRepository.Books.Count() : BookRepository.Books.Where(e=>e.Category== category).Count()
+                },
+
+                CurrentCategory= category
                 
             });
-    
-                
-               
-               
-    }
+        
+		public ViewResult AboutView()
+		{
+			return View();
+		}
+
+
+
+	}
 }

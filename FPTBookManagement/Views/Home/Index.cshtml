@@ -1,10 +1,10 @@
-﻿@model IQueryable<Book>
+﻿@model ProductsListViewModel
 
 
 
 <div class="container px-4 px-lg-5 mt-5">
 	 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        @foreach (var b in Model ?? Enumerable.Empty<Book>())
+        @foreach (var b in Model?.Books ?? Enumerable.Empty<Book>())
         {
             <div class="col mb-5">
                 <div class="card h-100">
@@ -21,12 +21,19 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to Cart</a></div>
                     </div>
                 </div>
             </div>
         }
+        
 	 </div>
+     <div class="text-center">
+        <div page-model="@Model?.PagingInfo" page-action="Index" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-outline-dark"
+             page-class-selected="btn-primary" class="btn-group align-content-center m-1"></div>
+     </div>
+     
 </div>
    
 

@@ -1,4 +1,5 @@
 ﻿using FPTBookManagement.Models;
+using FPTBookManagement.Models.ViewModels;
 using FPTBookManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -13,10 +14,23 @@ namespace FPTBookManagement.Controllers
         {
             this.BookRepository = bookRepository;
         }
-        public ViewResult Index(int productPage = 1) 
-            => View(BookRepository.Books
-                .OrderBy(b => b.Id)
-                .Skip((productPage - 1 ) * PageSize)
-                .Take(PageSize));
+        public ViewResult Index(int productPage = 1)
+            => View(new ProductsListViewModel
+            {
+                Books = BookRepository.Books.OrderBy(b => b.Id)
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize),
+                
+                PagingInfo = new PagingInfo {
+                    CurrentPage= productPage,
+                    ItemsPerPage=PageSize,
+                    TotalItems= BookRepository.Books.Count()
+                }
+                
+            });
+    
+                
+               
+               
     }
 }

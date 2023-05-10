@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using FPTBookManagement.Models;
 using FPTBookManagement.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.MapControllerRoute("pagination",
+    "Products/Page{productPage}",
+    new { Controller = "Home", action = "Index" });
 
 app.UseRouting();
 

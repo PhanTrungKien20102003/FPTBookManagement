@@ -4,6 +4,6 @@ namespace FPTBookManagement.Repository
 {
 	public interface IPersonRepository
 	{
-		IQueryable<Person> Persons { get; }
+		IQueryable<Person> Person { get; }
 	}
 }

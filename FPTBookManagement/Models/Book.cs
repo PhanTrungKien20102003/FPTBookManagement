@@ -8,7 +8,7 @@ namespace FPTBookManagement.Models
 
 		[Column(TypeName = "decimal(8,2)")]
 		public int Price { get; set; }
-		public string Caterogy { get; set; } = string.Empty;
+		public string Category { get; set; } = string.Empty;
 		public string Author { get; set; } = string.Empty;
 		public string Puslisher { get; set; } = string.Empty;
 	}

@@ -2,7 +2,7 @@
 
 namespace FPTBookManagement.Repository
 {
-	public class EFPersonRepository
+	public class EFPersonRepository: IPersonRepository
 	{
 		private FPTBookDBContext context;
 		public EFPersonRepository(FPTBookDBContext context)
@@ -10,6 +10,6 @@ namespace FPTBookManagement.Repository
 			this.context = context;
 		}
 
-		public IQueryable<Person> Persons => context.Persons;
+		public IQueryable<Person> Person => context.Persons;
 	}
 }

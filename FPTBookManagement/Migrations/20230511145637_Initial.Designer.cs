@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPTBookManagement.Migrations
 {
     [DbContext(typeof(FPTBookDBContext))]
-    [Migration("20230511145225_Orders")]
-    partial class Orders
+    [Migration("20230511145637_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

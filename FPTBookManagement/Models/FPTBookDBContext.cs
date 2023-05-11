@@ -8,5 +8,7 @@ namespace FPTBookManagement.Models
 
 		public DbSet<Book> Books => Set<Book>();
 		public DbSet<Person> Persons => Set<Person>();	
+
+		public DbSet<Cart> Carts => Set<Cart>();
 	}
 }

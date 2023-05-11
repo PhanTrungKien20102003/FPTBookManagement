@@ -24,7 +24,9 @@
 
 		public void RemoveItem(Book book) => Carts.RemoveAll(l => l.Book.Id == book.Id);
 
+		public decimal ComputeTotalValue() => Carts.Sum(e => e.Book.Price * e.Quantity);
 
+		public void Clear() => Carts.Clear();
 	}
 	public class CartDetails
 	{

@@ -16,6 +16,8 @@ builder.Services.AddDbContext<FPTBookDBContext>(opts => {
 builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

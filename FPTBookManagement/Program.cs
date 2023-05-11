@@ -17,6 +17,7 @@ builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 
@@ -53,6 +54,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/admin/{*cathall}", "/Admin/Index");
 
 SeedData.EnsurePopulated(app);
 

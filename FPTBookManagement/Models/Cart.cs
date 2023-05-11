@@ -2,6 +2,8 @@
 {
 	public class Cart
 	{
+		public long? CartId { get; set; }
+		public long PersonId { get; set; }
 		public List<CartDetails> Carts { get; set; } = new List<CartDetails>();
 		public void AddItem(Book book, int quantity)
 		{

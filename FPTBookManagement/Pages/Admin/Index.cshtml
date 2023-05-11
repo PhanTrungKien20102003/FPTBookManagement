@@ -1,5 +1,7 @@
 ﻿@page "/admin"
-@{ Layout =null;}
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +34,11 @@
 
     <!-- Template Stylesheet -->
     <link href="/Admin_Style/css/style.css" rel="stylesheet">
+    <base href="/" />
 </head>
 
 <body>
-    <component type="typeof(Routed)" render-mode ="Server" />
-    <script src="/_framework/blazor.server.js"></script>
+    <component type="typeof(Routed)" render-mode="Server" />
+	<script src="/_framework/blazor.server.js"></script>
 </body>
-
 </html>

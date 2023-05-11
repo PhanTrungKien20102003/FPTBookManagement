@@ -1,0 +1,12 @@
+﻿@model Cart
+
+<div class="">
+	<a class="btn btn-outline-dark" asp-page="/Cart" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+		<i class="bi-cart-fill me-1"></i>
+		Cart
+		<span class="badge bg-dark text-white ms-1 rounded-pill">@Model?.Lines.Sum(x => x.Quantity)</span>
+	</a>
+
+
+</div>
+

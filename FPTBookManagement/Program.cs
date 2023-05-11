@@ -17,6 +17,10 @@ builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));   
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
@@ -31,6 +35,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.MapControllerRoute("catpage",
     "{category}/Page{productPage:int}",

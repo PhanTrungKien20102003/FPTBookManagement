@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPTBookManagement.Migrations
 {
     [DbContext(typeof(FPTBookDBContext))]
-    [Migration("20230510043147_Initial")]
+    [Migration("20230511090320_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -55,6 +55,19 @@ namespace FPTBookManagement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("FPTBookManagement.Models.Order", b =>
+                {
+                    b.Property<long?>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("OrderId"));
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("FPTBookManagement.Models.Person", b =>

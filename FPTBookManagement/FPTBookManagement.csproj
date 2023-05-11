@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\CartPage\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

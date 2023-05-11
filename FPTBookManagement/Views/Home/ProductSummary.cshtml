@@ -1,0 +1,33 @@
+﻿@model Book
+
+<div class="col mb-5">
+	<div class="card h-100">
+		<!-- Product image-->
+		<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+		<!-- Product details-->
+		<div class="card-body p-4">
+			<div class="text-center">
+				<!-- Product name-->
+				<h5 class="fw-bolder">@Model.Title</h5>
+				<!-- Product price-->
+				@Model.Price.ToString("c")5
+			</div>
+		</div>
+		<!-- Product actions-->
+		<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+			<div class="text-center">
+				<form id="@Model.Id" asp-page="/Cart" method="post">
+					<input type="hidden" asp-for="Id" />
+					<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+					<span class="card-text p-1">
+						<button type="submit" class="btn btn-outline-dark mt-auto">
+							Add To Cart
+						</button>
+					</span>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>

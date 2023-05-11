@@ -2,8 +2,8 @@
 
 namespace FPTBookManagement.Repository
 {
-	public class IOrderRepository
+	public interface IOrderRepository
 	{
-		IQueryable<Cart> Carts { get; set; }
+		IQueryable<Order> Orders { get; }
 	}
 }

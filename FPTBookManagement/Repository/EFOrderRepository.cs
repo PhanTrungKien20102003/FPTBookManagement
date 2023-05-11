@@ -2,7 +2,7 @@
 
 namespace FPTBookManagement.Repository
 {
-	public class EFOrderRepository: IOrderRepository
+	public class EFOrderRepository : IOrderRepository
 	{
 		private FPTBookDBContext context;
 		public EFOrderRepository(FPTBookDBContext context)
@@ -10,6 +10,7 @@ namespace FPTBookManagement.Repository
 			this.context = context;
 		}
 
-		public IQueryable<Cart> Carts => context.Carts;
+		public IQueryable<Order> Orders => context.Orders;
 	}
+
 }

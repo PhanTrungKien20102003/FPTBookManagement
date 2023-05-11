@@ -54,6 +54,19 @@ namespace FPTBookManagement.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("FPTBookManagement.Models.Order", b =>
+                {
+                    b.Property<long?>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("OrderId"));
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("FPTBookManagement.Models.Person", b =>
                 {
                     b.Property<long>("Id")

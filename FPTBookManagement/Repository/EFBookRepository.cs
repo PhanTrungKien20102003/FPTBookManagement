@@ -11,5 +11,6 @@ namespace FPTBookManagement.Repository
 		}
 
 		public IQueryable<Book> Books => context.Books;
+
 	}
 }

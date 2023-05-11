@@ -1,8 +1,9 @@
-﻿using FPTBookManagement.Models;
+﻿using FPTBookManagement.Data;
+using FPTBookManagement.Models;
 
 namespace FPTBookManagement.Repository
 {
-	public class EFBookRepository : IBookRepository
+    public class EFBookRepository : IBookRepository
 	{
 		private FPTBookDBContext context;
 		public EFBookRepository(FPTBookDBContext context)

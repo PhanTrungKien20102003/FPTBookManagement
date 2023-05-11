@@ -1,9 +1,9 @@
-﻿using FPTBookManagement.Models;
+﻿using FPTBookManagement.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace FPTBookManagement.Models
 {
-	public class SeedData
+    public class SeedData
 	{
 		public static void EnsurePopulated(IApplicationBuilder app)
 		{

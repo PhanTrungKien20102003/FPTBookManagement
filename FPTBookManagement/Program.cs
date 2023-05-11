@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using FPTBookManagement.Models;
 using FPTBookManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
+using FPTBookManagement.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<FPTBookDBContext>(opts => {
 });
 builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();

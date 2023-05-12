@@ -1,0 +1,68 @@
+﻿<!-- Recent Sales Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                @*<thead>
+                    <tr class="text-white">
+                        <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Invoice</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>*@
+                <tbody>
+                    @if (Orders?.Count() > 0)
+                    {
+                        @foreach (Order o in Orders)
+                        {
+                            <tr>
+                                <td><input class="form-check-input" type="checkbox"></td>
+                                <td>@o.OrderId</td>
+                                <td>@o.Name</td>
+                                <td>@o.Zip</td>
+                                <th>Book</th>
+                                <th>Quantity</th>
+                                
+                                <td>
+                                    <button class="btn btn-sm btn-danger"
+                                            @onclick ="@(e => OrderSelected.InvokeAsync(o.OrderId))">
+                                        @ButtonLabel
+                                    </button>                                
+                                </td>
+                            </tr> 
+                                @foreach (CartLine line in o.Lines)
+                                {
+                                    <tr>
+                                       <td colspan="2"></td>
+                                       <td> @line.Book.Title</td>
+                                       <td> @line.Quantity</td>
+                                       <td></td>
+                                    </tr>
+                                }
+                        }
+                    } 
+                    else
+                    {
+                        <tr><td colspan="5" class="text-center">No Orders</td></tr>
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+<!-- Recent Sales End -->
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Orders";
+    [Parameter]
+    public IEnumerable<Order> Orders { get; set; } = Enumerable.Empty<Order>();
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Ship";
+    [Parameter]
+    public EventCallback<int> OrderSelected { get; set; }
+}

@@ -21,7 +21,7 @@ namespace FPTBookManagement.Models
 					{
 						Title = "A",
 						Price = 275,
-						Category = "A",
+						Category = "Cat1",
 						Author = "Mr.A",
 						Puslisher = "Company A"
 												
@@ -30,7 +30,7 @@ namespace FPTBookManagement.Models
 					{
 						Title = "B",
 						Price = 235,
-						Category = "B",
+						Category = "Cat2",
 						Author = "Mr.B",
 						Puslisher = "Company B"
 
@@ -39,7 +39,7 @@ namespace FPTBookManagement.Models
 					{
 						Title = "C",
 						Price = 175,
-						Category = "C",
+						Category = "Cat3",
 						Author = "Mr.C",
 						Puslisher = "Company C"
 
@@ -48,7 +48,7 @@ namespace FPTBookManagement.Models
 					{
 						Title = "D",
 						Price = 111,
-						Category = "D",
+						Category = "Cat4",
 						Author = "Mr.D",
 						Puslisher = "Company D"
 
@@ -57,7 +57,7 @@ namespace FPTBookManagement.Models
 					{
 						Title = "E",
 						Price = 222,
-						Category = "E",
+						Category = "Cat1",
 						Author = "Mr.E",
 						Puslisher = "Company E"
 
@@ -66,12 +66,34 @@ namespace FPTBookManagement.Models
 					{
 						Title = "F",
 						Price = 333,
-						Category = "F",
+						Category = "Cat2",
 						Author = "Mr.F",
 						Puslisher = "Company F"
 
 					}
 
+				);
+				context.SaveChanges();
+			}
+			if (context.Categories.Any())
+			{
+				context.Categories.AddRange(
+					new Category
+					{
+						CategoryName= "Cat1"
+					},
+					new Category
+					{
+						CategoryName = "Cat2"
+					},
+					new Category
+					{
+						CategoryName = "Cat3"
+					},
+					new Category
+					{
+						CategoryName = "Cat4"
+					}
 				);
 				context.SaveChanges();
 			}

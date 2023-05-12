@@ -17,6 +17,7 @@ builder.Services.AddDbContext<FPTBookDBContext>(opts => {
 builder.Services.AddScoped<IBookRepository, EFBookRepository>();
 builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
+builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPTBookManagement.Migrations
 {
     [DbContext(typeof(FPTBookDBContext))]
-    [Migration("20230511145637_Initial")]
+    [Migration("20230512133246_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -44,7 +44,7 @@ namespace FPTBookManagement.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(8,2)");
 
-                    b.Property<string>("Puslisher")
+                    b.Property<string>("Publisher")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -81,6 +81,23 @@ namespace FPTBookManagement.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("CartLine");
+                });
+
+            modelBuilder.Entity("FPTBookManagement.Models.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("FPTBookManagement.Models.Order", b =>

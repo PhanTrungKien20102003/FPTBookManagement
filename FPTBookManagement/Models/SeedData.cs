@@ -23,7 +23,7 @@ namespace FPTBookManagement.Models
 						Price = 275,
 						Category = "Cat1",
 						Author = "Mr.A",
-						Puslisher = "Company A"
+						Publisher = "Company A"
 												
 					},
 					new Book
@@ -32,7 +32,7 @@ namespace FPTBookManagement.Models
 						Price = 235,
 						Category = "Cat2",
 						Author = "Mr.B",
-						Puslisher = "Company B"
+						Publisher = "Company B"
 
 					}, 
 					new Book
@@ -41,7 +41,7 @@ namespace FPTBookManagement.Models
 						Price = 175,
 						Category = "Cat3",
 						Author = "Mr.C",
-						Puslisher = "Company C"
+						Publisher = "Company C"
 
 					},
 					new Book
@@ -50,7 +50,7 @@ namespace FPTBookManagement.Models
 						Price = 111,
 						Category = "Cat4",
 						Author = "Mr.D",
-						Puslisher = "Company D"
+						Publisher = "Company D"
 
 					},
 					new Book
@@ -59,7 +59,7 @@ namespace FPTBookManagement.Models
 						Price = 222,
 						Category = "Cat1",
 						Author = "Mr.E",
-						Puslisher = "Company E"
+						Publisher = "Company E"
 
 					},
 					new Book
@@ -68,7 +68,7 @@ namespace FPTBookManagement.Models
 						Price = 333,
 						Category = "Cat2",
 						Author = "Mr.F",
-						Puslisher = "Company F"
+						Publisher = "Company F"
 
 					}
 

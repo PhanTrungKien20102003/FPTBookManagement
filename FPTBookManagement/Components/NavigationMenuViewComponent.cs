@@ -6,9 +6,9 @@ namespace FPTBookManagement.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {
-        private ICategoryRepository repository;
+        private IBookRepository repository;
 
-        public NavigationMenuViewComponent(ICategoryRepository repository)
+        public NavigationMenuViewComponent(IBookRepository repository)
         {
             this.repository = repository;
         }
@@ -16,7 +16,7 @@ namespace FPTBookManagement.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];
-            return View(repository.Categories.Select(p => p.CategoryName).Distinct().OrderBy(p => p));
+            return View(repository.Books.Select(p => p.Category).Distinct().OrderBy(p => p));
         }
     }
 }

@@ -16,7 +16,6 @@
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Role</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -31,7 +30,6 @@
                                 <td>@c.Name</td>
                                 <td>@c.Phone</td>
                                 <td>@c.Address</td>
-                                <td>@c.Role</td>
                                 <td>
                                     <NavLink href="@GetEditUrl(c.Id ?? 0)" class="btn btn-sm btn-primary">Edit</NavLink>
                                     <a class="btn btn-sm btn-primary" @onclick="@(e => DeleteCustomer(c))">Delete</a>
@@ -42,14 +40,11 @@
                     else
                     {
                         <tr>
-                            <td colspan="5" class="text-center">No Products</td>
+                            <td colspan="6" class="text-center">No Customer</td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
-        <div>
-            <NavLink class="btn btn-primary w-100 m-2" href="/Admin/AddCustomer" type="button">Add new Customer</NavLink>
         </div>
     </div>
 </div>
@@ -79,4 +74,3 @@
 
 
 }
-

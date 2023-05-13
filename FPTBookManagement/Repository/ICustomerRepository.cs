@@ -4,8 +4,7 @@ namespace FPTBookManagement.Repository
 {
 	public interface ICustomerRepository
 	{
-		IQueryable<Customer> Customer { get; }
-
+		IQueryable<Customer> Customers { get; }
         void SaveItem(Customer c);
         void CreateItem(Customer c);
         void DeleteItem(Customer c);

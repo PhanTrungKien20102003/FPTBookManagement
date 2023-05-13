@@ -1,0 +1,81 @@
+﻿@page "/admin/owner"
+@inherits OwningComponentBase<IOwnerRepository>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Owners</h6>
+            <a href="">Show All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Owner ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (OwnerData?.Count() > 0)
+                    {
+                        @foreach (Owner o in OwnerData)
+                        {
+                            <tr>
+                                <td>@o.Id</td>
+                                <td>@o.Email</td>
+                                <td>@o.Name</td>
+                                <td>@o.Phone</td>
+                                <td>@o.Username</td>
+                                <td>@o.Password</td>
+                                <td>
+                                    <NavLink href="@GetEditUrl(o.Id ?? 0)" class="btn btn-sm btn-primary">Edit</NavLink>
+                                    <a class="btn btn-sm btn-primary" @onclick="@(e => DeleteOwner(o))">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">No Owner</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <NavLink class="btn btn-primary w-100 m-2" href="/Admin/AddOwner" type="button">Add new Store Owner</NavLink>
+        </div>
+    </div>
+</div>
+
+@code {
+    public IOwnerRepository Repository => Service;
+
+    public IEnumerable<Owner> OwnerData { get; set; }
+    = Enumerable.Empty<Owner>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        OwnerData = await Repository.Owners.ToListAsync();
+    }
+    public async Task DeleteOwner(Owner c)
+    {
+        Repository.DeleteItem(c);
+        await UpdateData();
+    }
+
+    public string GetEditUrl(long Id) => $"/Admin/Owners/edit/{Id}";
+
+
+}

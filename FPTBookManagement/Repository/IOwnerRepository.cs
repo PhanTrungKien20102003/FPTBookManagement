@@ -4,7 +4,7 @@ namespace FPTBookManagement.Repository
 {
     public interface IOwnerRepository
     {
-        IQueryable<Owner> Owner { get; }
+        IQueryable<Owner> Owners { get; }
 
         void SaveItem(Owner o);
         void CreateItem(Owner o);

@@ -11,7 +11,7 @@ namespace FPTBookManagement.Repository
 			this.context = context;
 		}
 
-		public IQueryable<Customer> Customer => context.Customers;
+        public IQueryable<Customer> Customers => context.Customers;
         public void CreateItem(Customer c)
         {
             context.Add(c);

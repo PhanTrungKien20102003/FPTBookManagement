@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace FPTBookManagement.Models
 {
     public class Owner
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
         [Required(ErrorMessage = "Please enter Email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter Name")]

@@ -1,0 +1,68 @@
+﻿@page "/admin/category"
+@inherits OwningComponentBase<ICategoryRepository>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Categories</h6>
+            <a href="">Show All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Category ID</th>
+                        <th scope="col">Category Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (CategoryData?.Count() > 0)
+                    {
+                        @foreach (Category c in CategoryData)
+                        {
+                            <tr>
+                                <td>@c.Id</td>
+                                <td>@c.CategoryName</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center">No Categories</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <NavLink class="btn btn-primary w-100 m-2" href="/Admin/AddCategory" type="button">Add new Category</NavLink>
+        </div>
+    </div>
+</div>
+
+@code {
+    public ICategoryRepository Repository => Service;
+
+    public IEnumerable<Category> CategoryData { get; set; }
+    = Enumerable.Empty<Category>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        CategoryData = await Repository.Categories.ToListAsync();
+    }
+    public async Task DeleteCategory(Category b)
+    {
+        Repository.DeleteItem(b);
+        await UpdateData();
+    }
+
+    public string GetEditUrl(long Id) => $"/Admin/Categories/edit/{Id}";
+
+
+}

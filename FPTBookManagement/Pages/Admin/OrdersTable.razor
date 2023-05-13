@@ -5,10 +5,10 @@
             <table class="table text-start align-middle table-bordered table-hover mb-0">
                
                 <thead>
-                    <tr class="text-white">
+                    
 
-                        <th colspan="5" class="text-center">@TableTitle</th>
-                    </tr>
+                    <th colspan="5" class="text-center">@TableTitle</th>
+                  
                 </thead>
                 <tbody>
                     @if (Orders?.Count() > 0)
@@ -29,7 +29,8 @@
                             {
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td> @line.Book.Title</td><td> @line.Quantity</td>
+                                    <td>@line.Book.Title</td>
+                                    <td>@line.Quantity</td>
                                     <td></td>
                                 </tr>
                             }

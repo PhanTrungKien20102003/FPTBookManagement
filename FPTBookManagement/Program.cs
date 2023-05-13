@@ -3,6 +3,7 @@ using FPTBookManagement.Models;
 using FPTBookManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
 using FPTBookManagement.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,13 @@ builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddDbContext<AppIdentityDbContext>(opts =>
+{
+    opts.UseSqlServer(
+        builder.Configuration["ConnectionStrings:IdentityConnection"]);
+});
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +48,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute("catpage",
     "{category}/Page{productPage:int}",
@@ -67,5 +78,6 @@ app.MapBlazorHub();
 app.MapFallbackToPage("/admin/{*cathall}", "/Admin/Index");
 
 SeedData.EnsurePopulated(app);
+IdentitySeedData.EnsurePopulated(app);
 
 app.Run();

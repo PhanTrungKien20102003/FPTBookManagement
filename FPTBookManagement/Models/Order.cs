@@ -7,6 +7,7 @@ namespace FPTBookManagement.Models
     {
 		[BindNever]
 		public int OrderId { get; set; }
+
 		[BindNever]
 		public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
 
@@ -30,6 +31,7 @@ namespace FPTBookManagement.Models
 		public string? Country { get; set; }
 
 		public bool GiftWrap { get; set; }
+
 
 		[BindNever]
 		public bool Shipped { get; set; }

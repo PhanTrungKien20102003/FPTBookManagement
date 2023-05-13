@@ -1,67 +1,7 @@
 ﻿@model Book
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <style>
-        #body {
-            margin: 0px;
-        }
-
-        #container {
-            display: flex;
-            background-color: white;
-            align-content: center;
-            justify-content: center;
-        }
-
-            #container div {
-                background-color: white;
-                allign-items: center;
-                margin: 20px;
-                width: 600px;
-                height: 400px;
-                padding: 10px;
-                font-family:cursive;
-            }
-            #title{
-                font-weight:bold;
-                font-family: serif;
-            }
-            #quote{
-                font-family:serif;
-            }
-    </style>
-</head>
-<body>
-</body>
-<div id="container">
-    <div>
-        <img src="https://dummyimage.com/600x400/d0d1e0/000000" alt="" style="width: 600px; height: 400px;" />
-    </div>
-    <div>
-        <figure class="text-center">
-            <blockquote class="blockquote">
-                <h1 class="fs-1" id="title">Hello from Book @Model.Title</h1>
-            </blockquote>
-            <figcaption id="quote" class="fs-4 blockquote-footer">
-                Written by <cite title="@Model.Author">@Model.Author</cite>
-            </figcaption></br>
-        </figure>
-        <dl class="row">
-            <dt class="fs-5 col-sm-3">- Prices: </dt>
-            <dd class="fs-5 col-sm-9">@Model.Price.ToString("c")</dd>
-
-            <dt class="fs-5 col-sm-3">- Catagory: </dt>
-            <dd class="fs-5 col-sm-9">@Model.Category</dd>
-
-            <dt class="fs-5 col-sm-3">- Publisher: </dt>
-            <dd class="fs-5 col-sm-9">@Model.Publisher</dd>
-        </dl>
-    </div>
-</div>
-</html>
+<h2>Hello from Book @Model.Title</h2>
+<h2>@Model.Price.ToString("c")</h2>
+<h2>Catagory: @Model.Category</h2>
+<h2>Publisher: @Model.Publisher</h2>
+<h2>Author: @Model.Author</h2>

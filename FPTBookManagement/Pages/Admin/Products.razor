@@ -33,6 +33,7 @@
                                 <td>@b.Author</td>
                                 <td>@b.Publisher</td>
                                 <td>
+                                    <NavLink href="@GetDetailsUrl(b.Id ?? 0)" class="btn btn-sm btn-primary">Detail</NavLink>
                                     <NavLink href="@GetEditUrl(b.Id ?? 0)" class="btn btn-sm btn-primary">Edit</NavLink>
                                     <a class="btn btn-sm btn-primary" @onclick="@(e => DeleteBook(b))">Delete</a>
                                 </td>
@@ -75,7 +76,8 @@
         await UpdateData();
     }
 
-    public string GetEditUrl(long Id) => $"/Admin/Books/edit/{Id}";
+    public string GetDetailsUrl(long Id) => $"/Admin/products/details/{Id}";
+    public string GetEditUrl(long Id) => $"/Admin/products/edit/{Id}";
 
 
 }

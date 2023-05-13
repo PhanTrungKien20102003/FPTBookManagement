@@ -4,8 +4,7 @@
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Books</h6>
-            <a href="">Show All</a>
+            <h5 class="mb-0">Books Table</h5>
         </div>
         <div class="table-responsive">
             <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -33,8 +32,12 @@
                                 <td>@b.Author</td>
                                 <td>@b.Publisher</td>
                                 <td>
-                                    <NavLink href="@GetDetailsUrl(b.Id ?? 0)" class="btn btn-sm btn-primary">Detail</NavLink>
-                                    <NavLink href="@GetEditUrl(b.Id ?? 0)" class="btn btn-sm btn-primary">Edit</NavLink>
+                                    <NavLink href="@GetDetailsUrl(b.Id ?? 0)" class="btn btn-sm btn-info">
+                                        Detail
+                                     </NavLink>
+                                    <NavLink href="@GetEditUrl(b.Id ?? 0)" class="btn btn-sm btn-warning">
+                                        Edit
+                                    </NavLink>
                                     <a class="btn btn-sm btn-primary" @onclick="@(e => DeleteBook(b))">Delete</a>
                                 </td>
                             </tr>
@@ -50,7 +53,7 @@
             </table>
         </div>
         <div>
-            <NavLink class="btn btn-primary w-100 m-2" href="/Admin/AddBook" type="button">Add new book</NavLink>
+            <NavLink class="btn btn-primary w-100 m-2" href="/Admin/Products/Create">Add new book</NavLink>
         </div>
     </div>
 </div>
@@ -76,8 +79,8 @@
         await UpdateData();
     }
 
-    public string GetDetailsUrl(long Id) => $"/Admin/products/details/{Id}";
-    public string GetEditUrl(long Id) => $"/Admin/products/edit/{Id}";
+    public string GetDetailsUrl(long Id) => $"/Admin/Products/Details/{Id}";
+    public string GetEditUrl(long Id) => $"/Admin/Products/Edit/{Id}";
 
 
 }

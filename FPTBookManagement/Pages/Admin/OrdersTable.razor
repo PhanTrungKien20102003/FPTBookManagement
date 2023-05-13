@@ -3,12 +3,10 @@
     <div class="bg-secondary text-center rounded p-4">
         <div class="table-responsive">
             <table class="table text-start align-middle table-bordered table-hover mb-0">
-               
                 <thead>
-                    
-
-                    <th colspan="5" class="text-center">@TableTitle</th>
-                  
+                    <tr class="text-white">
+                        <th colspan="5" class="text-center">@TableTitle</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @if (Orders?.Count() > 0)
@@ -16,33 +14,39 @@
                         @foreach (Order o in Orders)
                         {
                             <tr>
-                                
-                                <td>@o.Name</td><td>@o.Zip</td><th>Title</th><th>Quantity</th>                                                              
+                                <th>Name</th>
+                                <th>Zip</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                            </tr>
+                                <tr>
+                                <td>@o.Name</td><td>@o.Zip</td><th>Product</th><th>Quantity</th>
                                 <td>
                                     <button class="btn btn-sm btn-danger"
-                                            @onclick ="@(e => OrderSelected.InvokeAsync(o.OrderId))">
+                                    @onclick="@(e => OrderSelected.InvokeAsync(o.OrderId))">
                                         @ButtonLabel
-                                    </button>                                
+                                    </button>
                                 </td>
-                            </tr> 
+                            </tr>
+                                
                             @foreach (CartLine line in o.Lines)
                             {
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td>@line.Book.Title</td>
-                                    <td>@line.Quantity</td>
+                                    <td> @line.Book.Title</td>
+                                    <td> @line.Quantity</td>
                                     <td></td>
                                 </tr>
                             }
                         }
-                    } 
+                    }
                     else
                     {
                         <tr><td colspan="5" class="text-center">No Orders</td></tr>
                     }
                 </tbody>
             </table>
-            
+
         </div>
     </div>
 </div>

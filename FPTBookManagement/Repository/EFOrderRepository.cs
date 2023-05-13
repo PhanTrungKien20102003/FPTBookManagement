@@ -1,6 +1,5 @@
 ﻿using FPTBookManagement.Data;
 using FPTBookManagement.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace FPTBookManagement.Repository
 {
@@ -12,7 +11,7 @@ namespace FPTBookManagement.Repository
 			this.context = context;
 		}
 
-		public IQueryable<Order> Orders => context.Orders.Include(o => o.Lines).ThenInclude(l => l.Book);
+		public IQueryable<Order> Orders => context.Orders;
 
 		public void SaveOrder(Order order)
 		{

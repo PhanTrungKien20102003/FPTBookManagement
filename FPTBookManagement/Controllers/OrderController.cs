@@ -7,12 +7,12 @@ namespace FPTBookManagement.Controllers
 	public class OrderController : Controller
 	{
 		private IOrderRepository repository;
-		private Cart Cart;
+		private Cart cart;
 
 		public OrderController(IOrderRepository repository, Cart cart)
 		{
 			this.repository = repository;
-			this.Cart = cart;
+			this.cart = cart;
 		}
 
 		public ViewResult Checkout() => View(new Order());
@@ -20,15 +20,15 @@ namespace FPTBookManagement.Controllers
 		[HttpPost]
 		public IActionResult Checkout(Order order)
 		{
-			if (Cart.Lines.Count() == 0)
+			if (cart.Lines.Count() == 0)
 			{
 				ModelState.AddModelError("", "Sorry, Your cart is empty");
 			}
 			if (ModelState.IsValid)
 			{
-				order.Lines = Cart.Lines.ToArray();
+				order.Lines = cart.Lines.ToArray();
 				repository.SaveOrder(order);
-				Cart.Clear();
+				cart.Clear();
 				return RedirectToPage("/Completed", new { orderId = order.OrderId });
 			}
 			else

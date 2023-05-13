@@ -15,7 +15,8 @@ builder.Services.AddDbContext<FPTBookDBContext>(opts => {
         builder.Configuration["ConnectionStrings:FPTBookConnection"]);
 });
 builder.Services.AddScoped<IBookRepository, EFBookRepository>();
-builder.Services.AddScoped<IPersonRepository, EFPersonRepository>();
+builder.Services.AddScoped<ICustomerRepository, EFCustomerRepository>();
+builder.Services.AddScoped<IOwnerRepository, EFOwnerRepository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 

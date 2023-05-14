@@ -14,8 +14,10 @@ namespace FPTBookManagement.Repository
 
 		public void CreateItem(Category b)
 		{
+
 			context.Categories.Add(b);
 			context.SaveChanges();
+		
 		}
 
 		public void DeleteItem(Category b)

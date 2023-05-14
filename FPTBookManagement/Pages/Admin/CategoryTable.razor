@@ -1,0 +1,55 @@
+﻿<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">@TableTitle</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Category ID</th>
+                        <th scope="col">Category Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Categories?.Count() > 0)
+                    {
+                        @foreach (Category c in Categories)
+                        {
+                            <tr>
+                                <td>@c.Id</td>
+                                <td>@c.CategoryName</td>
+                                <td>
+                                    <button class="button btn-sm btn-danger" @onclick="@(e=> CategorySelected.InvokeAsync((int)c.Id))"> 
+                                        @ButtonLabel
+                                    </button>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center">No Categories</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Categories";
+
+    [Parameter]
+    public IEnumerable<Category> Categories { get; set; } = Enumerable.Empty<Category>();
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Approve";
+
+    [Parameter]
+    public EventCallback<int> CategorySelected { get; set; }
+}

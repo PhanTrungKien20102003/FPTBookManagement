@@ -75,24 +75,29 @@ namespace FPTBookManagement.Data
                 );
                 context.SaveChanges();
             }
-            if (context.Categories.Any())
+            if (!context.Categories.Any())
             {
                 context.Categories.AddRange(
                     new Category
                     {
-                        CategoryName = "Cat1"
+                        CategoryName = "Cat1",
+                        Approved = true
                     },
                     new Category
                     {
-                        CategoryName = "Cat2"
+                        CategoryName = "Cat2",
+						Approved = true
+
                     },
                     new Category
                     {
-                        CategoryName = "Cat3"
+                        CategoryName = "Cat3",
+						Approved = true
                     },
                     new Category
                     {
-                        CategoryName = "Cat4"
+                        CategoryName = "Cat4",
+						Approved = true
                     }
                 );
                 context.SaveChanges();

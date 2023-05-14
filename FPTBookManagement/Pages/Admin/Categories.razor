@@ -6,7 +6,7 @@
                Categories="UnapprovedCategories" ButtonLabel="Aprove" CategorySelected="ApproveCategory" />
 
 <CategoryTable TableTitle="Approved Category"
-             Categories="ApprovedCategories" ButtonLabel="Delete" CategorySelected="DeleteCategory" />
+             Categories="ApprovedCategories" ButtonLabel="Unapprove" CategorySelected="UnapproveCategory" />
 
 <button class="btn btn-info" @onclick="@(e => UpdateData())">Refresh Data</button>
 
@@ -31,7 +31,7 @@
     }
 
     public void ApproveCategory(int id) => UpdateCategory(id, true);
-    public void DeleteCategory(int id) => UpdateCategory(id, false);
+    public void UnapproveCategory(int id) => UpdateCategory(id, false);
 
     private void UpdateCategory(int id, bool approveValue)
     {
@@ -42,4 +42,6 @@
             Repository.SaveItem(o);
         }
     }
+
+    
 }

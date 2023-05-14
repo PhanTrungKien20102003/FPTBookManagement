@@ -1,7 +1,7 @@
 ﻿@page "/Admin/Products/Edit/{id:long}"
 @page "/Admin/products/Create"
 @inherits OwningComponentBase<IBookRepository>
-
+@using FPTBookManagement.Models.ViewModels
 <style>
 	div.validation-message {
 		color: rgb(220, 53, 69);
@@ -13,44 +13,50 @@
 	@TitleText a Product
 </h3>
 <h1>Test</h1>
-<EditForm Model="Product" OnValidSubmit="SaveBook">
+<EditForm Model="Model" OnValidSubmit="SaveBook">
 	<DataAnnotationsValidator />
-	@if (Product.Id != 0)
+	@if (Model.Product.Id != 0)
 	{
 		<div class="form-group">
 			<label>ID</label>
-			<input class=" form-control" disabled value="@Product.Id" />
+			<input class=" form-control" disabled value="@Model.Product.Id" />
 		</div>
 	}
 	
 	<div class="form-group">
 		<label>Title</label>
-		<ValidationMessage For="@(() => Product.Title)" />
-		<InputText class="form-control" @bind-Value="Product.Title" />
+		<ValidationMessage For="@(() => Model.Product.Title)" />
+		<InputText class="form-control" @bind-Value="Model.Product.Title" />
 	</div>
 	
 	<div class="form-group">
 		<label>Category</label>
-		<ValidationMessage For="@(() => Product.Category)" />
-		<InputText class="form-control" @bind-Value="Product.Category" />
+		<ValidationMessage For="@(() => Model.Product.Category)" />
+		<InputSelect class="form-control" @bind-Value="Model.Product.Category">
+			@foreach (var c in Model.Categories.Where(l => l.Approved==true))
+			{
+				<option value="@c.CategoryName.ToString()">@c.CategoryName.ToString()</option>
+			}
+		</InputSelect>
+		
 	</div>
 	
 	<div class="form-group">
 		<label>Price</label>
-		<ValidationMessage For="@(() => Product.Price)" />
-		<InputNumber class="form-control" @bind-Value="Product.Price" />
+		<ValidationMessage For="@(() => Model.Product.Price)" />
+		<InputNumber class="form-control" @bind-Value="Model.Product.Price" />
 	</div>
 	
 	<div class="form-group">
 		<label>Author</label>
-		<ValidationMessage For="@(() => Product.Author)" />
-		<InputText class="form-control" @bind-Value="Product.Author" />
+		<ValidationMessage For="@(() => Model.Product.Author)" />
+		<InputText class="form-control" @bind-Value="Model.Product.Author" />
 	</div>
 	
 	<div class="form-group">
 		<label>Publisher</label> 
-		<ValidationMessage For="@(() => Product.Publisher)" />
-		<InputText class="form-control" @bind-Value="Product.Publisher" />
+		<ValidationMessage For="@(() => Model.Product.Publisher)" />
+		<InputText class="form-control" @bind-Value="Model.Product.Publisher" />
 	</div>
 
 	<div class="mt-2">
@@ -67,16 +73,23 @@
 	[Inject]
 	public NavigationManager? NavManager { get; set; }
 
+	[Inject]
+	public ICategoryRepository? CategoryRepository { get; set; }
+
 	[Parameter]
 	public long id { get; set; } = 0;
 
-	public Book Product { get; set; } = new Book();
+	public ProductAdminEditorViewModel? Model { get; set; } = new();
 
 	protected override void OnParametersSet()
 	{
+		List<Category> categoryList = CategoryRepository.Categories.ToList();
+
+		Model.Categories = categoryList;
+		
 		if (id != 0)
 		{
-			Product = Repository.Books.FirstOrDefault(p => p.Id == id) ?? new();
+			Model.Product =  Repository.Books.FirstOrDefault(p => p.Id == id) ?? new();
 		}
 	}
 
@@ -84,11 +97,11 @@
 	{
 		if (id == 0)
 		{
-			Repository.CreateItem(Product);
+			Repository.CreateItem(Model.Product);
 		}
 		else
 		{
-			Repository.SaveItem(Product);
+			Repository.SaveItem(Model.Product);
 		}
 		NavManager?.NavigateTo("/Admin/Products");
 	}

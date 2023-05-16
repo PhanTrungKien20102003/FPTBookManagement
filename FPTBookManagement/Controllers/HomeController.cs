@@ -18,7 +18,7 @@ namespace FPTBookManagement.Controllers
             => View(new ProductsListViewModel
             {
                 Books = BookRepository.Books
-                    .Where(p=> category == null || p.Category == category)
+                    .Where(p=> category == null || p.Category == category )
                     .OrderBy(b => b.Id)
                     .Skip((productPage - 1) * PageSize)
                     .Take(PageSize),

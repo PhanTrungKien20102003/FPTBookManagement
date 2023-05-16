@@ -1,0 +1,88 @@
+﻿@page "/storeowner/books"
+@page "/storeowner"
+@inherits OwningComponentBase<IBookRepository>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h5 class="mb-0">Books Table</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Book ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Puslisher</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (BookData?.Count() > 0)
+                    {
+                        @foreach (Book b in BookData)
+                        {
+                            <tr>
+                                <td>@b.Id</td>
+                                <td>@b.Title</td>
+                                <td>@b.Price.ToString("c")</td>
+                                <td>@b.Category</td>
+                                <td>@b.Author</td>
+                                <td>@b.Publisher</td>
+                                <td>
+                                    <NavLink href="@GetDetailsUrl(b.Id ?? 0)" class="btn btn-sm btn-info">
+                                        Detail
+                                    </NavLink>
+                                    <NavLink href="@GetEditUrl(b.Id ?? 0)" class="btn btn-sm btn-warning">
+                                        Edit
+                                    </NavLink>
+                                    <a class="btn btn-sm btn-primary" @onclick="@(e => DeleteBook(b))">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">No Products</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <NavLink class="btn btn-primary w-100 m-2" href="/StoreOwner/Books/Create">Add new book</NavLink>
+        </div>
+    </div>
+</div>
+
+@code {
+    public IBookRepository Repository => Service;
+
+    public IEnumerable<Book> BookData { get; set; }
+    = Enumerable.Empty<Book>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        BookData = await Repository.Books.ToListAsync();
+    }
+    public async Task DeleteBook(Book b)
+    {
+        Repository.DeleteItem(b);
+        await UpdateData();
+    }
+
+    public string GetDetailsUrl(long Id) => $"/StoreOwner/Books/Details/{Id}";
+    public string GetEditUrl(long Id) => $"/StoreOwner/Books/Edit/{Id}";
+
+
+}
+

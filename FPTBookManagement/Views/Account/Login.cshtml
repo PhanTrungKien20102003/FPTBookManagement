@@ -1,6 +1,5 @@
 ﻿@model LoginViewModel
 
-
 <!-- Section: Design Block -->
 <section class="text-center">
     <!-- Background image -->
@@ -9,22 +8,17 @@
         height: 300px;
         "></div>
     <!-- Background image -->
-
     <div class="card mx-4 mx-md-5 shadow-5-strong" style="
         margin-top: -100px;
         background: hsla(0, 0%, 100%, 0.8);
         backdrop-filter: blur(30px);
         ">
         <div class="card-body py-5 px-md-5">
-
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
-                    <h2 class="fw-bold mb-5">Sign up now</h2>
-                    
+                    <h2 class="fw-bold mb-5">Sign up now</h2>                   
                     <form asp-action="Login" asp-controller="Account" method="post">
-                        <input type="hidden" asp-for="ReturnUrl" />
-                        
-                            
+                        <input type="hidden" asp-for="ReturnUrl" />                      
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <div asp-validation-for="Email"></div>
@@ -32,22 +26,16 @@
                             <input asp-for="Name" type="text" class="form-control" />
                           
                         </div>
-
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                             <label asp-for="Password" class="form-label" >Password</label>
                             <input asp-for="Password" type="password"  class="form-control" />
                            
                         </div>
-
-                       
-
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4">
                             Login
-                        </button>
-
-                        
+                        </button>        
                     </form>
                 </div>
             </div>

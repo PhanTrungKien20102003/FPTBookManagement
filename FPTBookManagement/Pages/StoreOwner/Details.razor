@@ -1,0 +1,76 @@
+﻿@page "/storeowner/books/details/{id:long}"
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid white;
+            margin-left: 300px;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        th {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2 class="text-center">Details</h2>
+    </div>
+    <table style="width:50%">
+        <tr>
+            <th>Title</th>
+            <td>@Book?.Title</td>
+
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>@Book?.Author</td>
+
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>@Book?.Price</td>
+
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>@Book?.Category</td>
+
+        </tr>
+        <tr>
+            <th>Publisher</th>
+            <td>@Book?.Publisher</td>
+
+        </tr>
+    </table>
+</body>
+</html>
+<br />
+
+<div>
+    <NavLink style="margin-left:300px;" class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+    <NavLink class="btn btn-secondary" href="/storeowner/books">Back</NavLink>
+</div>
+
+@code {
+    [Inject]
+    public IBookRepository repository { get; set; }
+
+    [Parameter]
+    public long id { get; set; }
+
+    public Book? Book { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Book = repository?.Books.FirstOrDefault(p => p.Id == id);
+    }
+
+    public string EditUrl => $"/storeowner/books/edit/{Book?.Id}";
+}

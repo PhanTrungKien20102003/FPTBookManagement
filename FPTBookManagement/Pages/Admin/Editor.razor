@@ -1,5 +1,5 @@
 ﻿@page "/Admin/Products/Edit/{id:long}"
-@page "/Admin/products/Create"
+@page "/Admin/Products/Create"
 @inherits OwningComponentBase<IBookRepository>
 @using FPTBookManagement.Models.ViewModels
 <style>
@@ -9,63 +9,67 @@
 	}
 </style>
 
-<h3 class="bg-@ThemeColor text-white text-center p-1">
-	@TitleText a Product
-</h3>
-<h1>Test</h1>
-<EditForm Model="Model" OnValidSubmit="SaveBook">
-	<DataAnnotationsValidator />
-	@if (Model.Product.Id != 0)
-	{
-		<div class="form-group">
-			<label>ID</label>
-			<input class=" form-control" disabled value="@Model.Product.Id" />
+<div class="containerfluid pt-4 px-4">
+	<div class="row vh-100 bg-secondary rounded justify-content-center mx-0">
+		<div class="mb-2 mt-4">
+			<h2> Add new book</h2>
 		</div>
-	}
-	
-	<div class="form-group">
-		<label>Title</label>
-		<ValidationMessage For="@(() => Model.Product.Title)" />
-		<InputText class="form-control" @bind-Value="Model.Product.Title" />
-	</div>
-	
-	<div class="form-group">
-		<label>Category</label>
-		<ValidationMessage For="@(() => Model.Product.Category)" />
-		<InputSelect class="form-control" @bind-Value="Model.Product.Category">
-			@foreach (var c in Model.Categories.Where(l => l.Approved==true))
-			{
-				<option value="@c.CategoryName.ToString()">@c.CategoryName.ToString()</option>
-			}
-		</InputSelect>
-		
-	</div>
-	
-	<div class="form-group">
-		<label>Price</label>
-		<ValidationMessage For="@(() => Model.Product.Price)" />
-		<InputNumber class="form-control" @bind-Value="Model.Product.Price" />
-	</div>
-	
-	<div class="form-group">
-		<label>Author</label>
-		<ValidationMessage For="@(() => Model.Product.Author)" />
-		<InputText class="form-control" @bind-Value="Model.Product.Author" />
-	</div>
-	
-	<div class="form-group">
-		<label>Publisher</label> 
-		<ValidationMessage For="@(() => Model.Product.Publisher)" />
-		<InputText class="form-control" @bind-Value="Model.Product.Publisher" />
-	</div>
+		<div class="bg-secondary rounded h-100 p-4">
+			<EditForm Model="Model" OnValidSubmit="SaveBook">
+				<DataAnnotationsValidator />
+				@if (Model.Product.Id != 0)
+				{
+					<div class="row mb-3">
+						<label class="form-label">Book ID</label>
+						<input class=" form-control forInput" disabled value="@Model.Product.Id" />
+					</div>
+				}
 
-	<div class="mt-2">
-		<button type="submit" class="btn btn-@ThemeColor">Save</button>
-		<NavLink class="btn btn-secondary" href="/admin/products">Cancel</NavLink>
+				<div class="row mb-3">
+					<label class="form-label">Title</label>
+					<ValidationMessage For="@(() => Model.Product.Title)" />
+					<InputText class="form-control forInput" placeholder="Title" @bind-Value="Model.Product.Title" />
+				</div>
+
+				<div class="form-floating mb-3">
+					<label class="form-label">Category</label>
+					<ValidationMessage For="@(() => Model.Product.Category)" />
+					<InputSelect class="form-control form-select mb-3" @bind-Value="Model.Product.Category">
+						@foreach (var c in Model.Categories.Where(l => l.Approved == true))
+						{
+							<option value="@c.CategoryName.ToString()">@c.CategoryName.ToString()</option>
+						}
+					</InputSelect>
+
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Price</label>
+					<ValidationMessage For="@(() => Model.Product.Price)" />
+					<InputNumber class="form-control forInput" @bind-Value="Model.Product.Price" />
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Author</label>
+					<ValidationMessage For="@(() => Model.Product.Author)" />
+					<InputText class="form-control forInput" @bind-Value="Model.Product.Author" />
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Publisher</label>
+					<ValidationMessage For="@(() => Model.Product.Publisher)" />
+					<InputText class="form-control forInput" @bind-Value="Model.Product.Publisher" />
+				</div>
+
+				<div class="mt-2">
+					<button type="submit" class="btn btn-warning m-2">Save</button>
+					<NavLink class="btn btn-primary m-2" href="/admin/products">Cancel</NavLink>
+				</div>
+
+			</EditForm>
+		</div>
 	</div>
-
-</EditForm>
-
+</div>
 
 @code {
 	public IBookRepository Repository => Service;
@@ -86,10 +90,10 @@
 		List<Category> categoryList = CategoryRepository.Categories.ToList();
 
 		Model.Categories = categoryList;
-		
+
 		if (id != 0)
 		{
-			Model.Product =  Repository.Books.FirstOrDefault(p => p.Id == id) ?? new();
+			Model.Product = Repository.Books.FirstOrDefault(p => p.Id == id) ?? new();
 		}
 	}
 

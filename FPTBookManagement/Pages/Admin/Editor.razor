@@ -7,15 +7,17 @@
 		color: rgb(220, 53, 69);
 		font-weight: 500
 	}
-	label{
-		margin-left:15px;
-		color:white;
-		font-size:15px;
+
+	label {
+		margin-left: 15px;
+		color: white;
+		font-size: 15px;
 	}
-	#text, #select, #number, #constance{
-		margin-left:10px;
-		background-color:white;
-		width:98%;
+
+	#text, #select, #number, #constance {
+		margin-left: 10px;
+		background-color: white;
+		width: 98%;
 	}
 </style>
 
@@ -31,39 +33,39 @@
 			<input id="constance" class=" form-control" disabled value="@Model.Product.Id" />
 		</div>
 	}
-	<br/>
+	<br />
 	<div class="form-group">
 		<label>Title:</label>
 		<ValidationMessage For="@(() => Model.Product.Title)" />
 		<InputText id="text" class="form-control" @bind-Value="Model.Product.Title" />
 	</div>
-	<br/>
+	<br />
 	<div class="form-group">
 		<label>Category:</label>
 		<ValidationMessage For="@(() => Model.Product.Category)" />
 		<InputSelect id="select" class="form-control" @bind-Value="Model.Product.Category">
-			@foreach (var c in Model.Categories.Where(l => l.Approved==true))
+			@foreach (var c in Model.Categories.Where(l => l.Approved == true))
 			{
 				<option value="@c.CategoryName.ToString()">@c.CategoryName.ToString()</option>
 			}
 		</InputSelect>
-		
+
 	</div>
-	<br/>
+	<br />
 	<div class="form-group">
 		<label>Price:</label>
 		<ValidationMessage For="@(() => Model.Product.Price)" />
 		<InputNumber id="number" class="form-control" @bind-Value="Model.Product.Price" />
 	</div>
-	<br/>
+	<br />
 	<div class="form-group">
 		<label>Author:</label>
 		<ValidationMessage For="@(() => Model.Product.Author)" />
 		<InputText id="text" class="form-control" @bind-Value="Model.Product.Author" />
 	</div>
-	<br/>
+	<br />
 	<div class="form-group">
-		<label>Publisher:</label> 
+		<label>Publisher:</label>
 		<ValidationMessage For="@(() => Model.Product.Publisher)" />
 		<InputText id="text" class="form-control" @bind-Value="Model.Product.Publisher" />
 	</div>
@@ -73,10 +75,8 @@
 		<NavLink class="btn btn-secondary" href="/admin/products">Cancel</NavLink>
 	</div>
 
-			</EditForm>
-		</div>
-	</div>
-</div>
+</EditForm>
+
 
 @code {
 	public IBookRepository Repository => Service;

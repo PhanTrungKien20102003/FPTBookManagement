@@ -357,6 +357,7 @@ button {
     }
 
 input,
+forInput,
 button,
 select,
 optgroup,
@@ -365,6 +366,10 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+}
+
+.forInput {
+    padding: 1px 2px;
 }
 
 button,

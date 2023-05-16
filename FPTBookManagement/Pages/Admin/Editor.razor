@@ -1,5 +1,5 @@
 ﻿@page "/Admin/Products/Edit/{id:long}"
-@page "/Admin/products/Create"
+@page "/Admin/Products/Create"
 @inherits OwningComponentBase<IBookRepository>
 @using FPTBookManagement.Models.ViewModels
 <style>
@@ -73,8 +73,10 @@
 		<NavLink class="btn btn-secondary" href="/admin/products">Cancel</NavLink>
 	</div>
 
-</EditForm>
-
+			</EditForm>
+		</div>
+	</div>
+</div>
 
 @code {
 	public IBookRepository Repository => Service;
@@ -95,10 +97,10 @@
 		List<Category> categoryList = CategoryRepository.Categories.ToList();
 
 		Model.Categories = categoryList;
-		
+
 		if (id != 0)
 		{
-			Model.Product =  Repository.Books.FirstOrDefault(p => p.Id == id) ?? new();
+			Model.Product = Repository.Books.FirstOrDefault(p => p.Id == id) ?? new();
 		}
 	}
 

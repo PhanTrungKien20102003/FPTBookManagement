@@ -54,7 +54,7 @@
                 Written by <cite title="@Model.Author">@Model.Author</cite>
             </figcaption></br>
         </figure>
-        <dl class="row">
+        <dl class="row" style="padding: 50px">
             <dt class="fs-5 col-sm-3">- Prices: </dt>
             <dd class="fs-5 col-sm-9">@Model.Price.ToString("c")</dd>
 
@@ -64,6 +64,17 @@
             <dt class="fs-5 col-sm-3">- Publisher: </dt>
             <dd class="fs-5 col-sm-9">@Model.Publisher</dd>
         </dl>
+        <figure class="text-center" style="padding: 35px">
+            <form id="@Model.Id" asp-page="/Cart" method="post">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                <span class="card-text p-1">
+                    <button type="submit" class="btn btn-outline-dark mt-auto">
+                        Add To Cart
+                    </button>
+                </span>
+            </form>
+        </figure>
     </div>
 </div>
 </html>

@@ -54,17 +54,17 @@
                 Written by <cite title="@Model.Author">@Model.Author</cite>
             </figcaption></br>
         </figure>
-        <dl class="row" style="padding: 50px">
+        <dl class="row">
             <dt class="fs-5 col-sm-3">- Prices: </dt>
             <dd class="fs-5 col-sm-9">@Model.Price.ToString("c")</dd>
 
-            <dt class="fs-5 col-sm-3">- Catagory: </dt>
+            <dt class="fs-5 col-sm-3">- Category: </dt>
             <dd class="fs-5 col-sm-9">@Model.Category</dd>
 
             <dt class="fs-5 col-sm-3">- Publisher: </dt>
             <dd class="fs-5 col-sm-9">@Model.Publisher</dd>
         </dl>
-        <figure class="text-center" style="padding: 35px">
+        <figure class="text-center" style="padding:20px">
             <form id="@Model.Id" asp-page="/Cart" method="post">
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
@@ -72,6 +72,7 @@
                     <button type="submit" class="btn btn-outline-dark mt-auto">
                         Add To Cart
                     </button>
+                    <a href="/" class="btn btn-outline-dark mt-auto">Back</a>
                 </span>
             </form>
         </figure>
